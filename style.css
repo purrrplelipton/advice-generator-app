@@ -12,12 +12,6 @@
   font-weight: 800;
 }
 
-*::before,
-*,
-*::after {
-  /* outline: 1px solid red; */
-}
-
 body {
   min-width: 320px;
   max-width: 1280px;
@@ -36,6 +30,7 @@ main {
   text-align: center;
   position: relative;
   box-shadow: 0 1em 2em rgba(0 0 0 / 0.125);
+  max-width: 476px;
 }
 
 img {
@@ -45,13 +40,13 @@ img {
 }
 
 h1 {
-  font-size: 0.7em;
+  font-size: 0.625em;
   letter-spacing: 0.2em;
   color: var(--Neon-Green);
 }
 
 p {
-  font-size: 1.75em;
+  font-size: 1.375em;
 }
 
 button {
@@ -72,7 +67,11 @@ button:active {
 }
 
 @media only screen and (min-width: 1024px) {
-  main {
-    max-width: 768px;
+  h1 {
+    font-size: 0.9375em;
+  }
+
+  p {
+    font-size: 1.75em;
   }
 }

@@ -24,11 +24,13 @@ Users should be able to:
 
 ### Screenshots
 
-![](./screenshot.jpg)
+| Desktop View                     | Mobile View                    |
+| -------------------------------- | ------------------------------ |
+| ![Desktop](./design/desktop.png) | ![Mobile](./design/mobile.png) |
 
 ### Links
 
-- Solution URL: [Advice Generator App Solution](https://frontendmentor.io/)
+- Solution URL: [Advice Generator App](https://frontendmentor.io/)
 - Live Site URL: [tobiii-aga.vercel.app](https://tobiii-aga.vercel.app/)
 
 ## My process
