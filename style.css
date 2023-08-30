@@ -1,0 +1,78 @@
+:root {
+  --Light-Cyan: hsl(193, 38%, 86%);
+  --Neon-Green: hsl(150, 100%, 66%);
+  --Grayish-Blue: hsl(217, 19%, 38%);
+  --Dark-Grayish-Blue: hsl(217, 19%, 24%);
+  --Dark-Blue: hsl(218, 23%, 16%);
+
+  color: var(--Light-Cyan);
+  background-color: var(--Dark-Blue);
+
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+}
+
+*::before,
+*,
+*::after {
+  /* outline: 1px solid red; */
+}
+
+body {
+  min-width: 320px;
+  max-width: 1280px;
+  margin-inline: auto;
+  height: 100vh;
+  min-height: 768px;
+  display: grid;
+  place-items: center;
+}
+
+main {
+  margin: auto 1.25em;
+  padding: 1.8em 1.5em 3.75em;
+  background-color: var(--Dark-Grayish-Blue);
+  border-radius: 0.625em;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 1em 2em rgba(0 0 0 / 0.125);
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  color: var(--Neon-Green);
+}
+
+p {
+  font-size: 1.75em;
+}
+
+button {
+  display: inline-block;
+  border: 0;
+  border-radius: 50%;
+  padding: 1.25em;
+  background-color: var(--Neon-Green);
+  transition: box-shadow 0.15s ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+button:active {
+  box-shadow: 0 0 2em var(--Neon-Green);
+}
+
+@media only screen and (min-width: 1024px) {
+  main {
+    max-width: 768px;
+  }
+}

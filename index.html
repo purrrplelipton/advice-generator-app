@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Advice generator app | Frontend Mentor</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <h1>ADVICE&nbsp;#&nbsp;<span></span></h1>
+        <p>&OpenCurlyDoubleQuote;<span></span>&CloseCurlyDoubleQuote;</p>
+      </div>
+      <picture>
+        <source
+          media="(min-width: 1024px)"
+          srcset="./images/pattern-divider-desktop.svg"
+        />
+        <source
+          media="(max-width: 1023px)"
+          srcset="./images/pattern-divider-mobile.svg"
+        />
+        <img src="./images/pattern-divider-mobile.svg" alt="Divider pattern" />
+      </picture>
+      <button type="button">
+        <img src="./images/icon-dice.svg" alt="Dice icon" />
+      </button>
+    </main>
+    <script>
+      const { log } = console;
+      const btn = document.querySelector('button');
+      const advice_id = document.querySelector('h1 span');
+      const _advice = document.querySelector('p span');
+      document.addEventListener('DOMContentLoaded', () => {
+        const baseURL = new URL('advice', 'https://api.adviceslip.com');
+        async function getAdvice() {
+          try {
+            const response = await fetch(baseURL);
+            const {
+              slip: { id, advice },
+            } = await response.json();
+            advice_id.textContent = id;
+            _advice.textContent = advice;
+          } catch (error) {
+            log('Encountered an error fetching advice:', error);
+          }
+        }
+        getAdvice();
+        btn.addEventListener('click', () => getAdvice());
+      });
+    </script>
+  </body>
+</html>
