@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Advice Generator App](https://frontendmentor.io/)
+- Solution URL: [Advice Generator App](https://www.frontendmentor.io/solutions/advice-generator-app-hRkm4NR47M)
 - Live Site URL: [tobiii-aga.vercel.app](https://tobiii-aga.vercel.app/)
 
 ## My process

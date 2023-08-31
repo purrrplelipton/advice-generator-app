@@ -21,6 +21,62 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <title>Advice generator app | Frontend Mentor</title>
+    <style>
+      .loader-overlay {
+        position: fixed;
+        inset: 0;
+        color: var(--Neon-Green);
+        background-color: var(--Dark-Blue);
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        opacity: 0;
+      }
+
+      .loader-overlay.show {
+        opacity: 1;
+      }
+
+      .loader-overlay .inner {
+        width: 32px;
+        aspect-ratio: 1 / 1;
+        position: relative;
+      }
+
+      .loader-overlay .inner::before,
+      .loader-overlay .inner::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 31.25%;
+        aspect-ratio: 1 / 1;
+        background-color: currentColor;
+        animation: wander 2s ease infinite;
+      }
+
+      @keyframes wander {
+        25% {
+          transform: translateX(calc(100% * 2.2)) rotate(-0.25turn) scale(0.5);
+        }
+        50% {
+          transform: translateX(calc(100% * 2.2)) translateY(calc(100% * 2.2))
+            rotate(-0.5turn);
+        }
+        75% {
+          transform: translateX(0) translateY(calc(100% * 2.2))
+            rotate(-0.75turn) scale(0.5);
+        }
+        100% {
+          transform: rotate(-1turn);
+        }
+      }
+
+      .loader-overlay .inner::after {
+        animation-delay: 1s;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -48,20 +104,38 @@
       const btn = document.querySelector('button');
       const advice_id = document.querySelector('h1 span');
       const _advice = document.querySelector('p span');
-      document.addEventListener('DOMContentLoaded', () => {
-        const baseURL = new URL('advice', 'https://api.adviceslip.com');
-        async function getAdvice() {
-          try {
-            const response = await fetch(baseURL);
-            const {
-              slip: { id, advice },
-            } = await response.json();
-            advice_id.textContent = id;
-            _advice.textContent = advice;
-          } catch (error) {
-            log('Encountered an error fetching advice:', error);
-          }
+      const overlay = document.createElement('div');
+      overlay.innerHTML = '<span class="inner"></span>';
+      overlay.role = 'presentation';
+      overlay.className = 'loader-overlay';
+
+      async function getAdvice() {
+        try {
+          document.body.appendChild(overlay);
+          setTimeout(() => {
+            overlay.classList.add('show');
+          }, 300);
+          btn.disabled = true;
+          const baseURL = new URL('advice', 'https://api.adviceslip.com');
+          const response = await fetch(baseURL);
+          const {
+            slip: { id, advice },
+          } = await response.json();
+          advice_id.textContent = id;
+          _advice.textContent = advice;
+          btn.disabled = false;
+          setTimeout(() => {
+            document.body.removeChild(overlay);
+            setTimeout(() => {
+              overlay.classList.remove('show');
+            }, 300);
+          }, 300);
+        } catch (error) {
+          log('Encountered an error fetching advice:', error);
         }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
         getAdvice();
         btn.addEventListener('click', () => getAdvice());
       });
